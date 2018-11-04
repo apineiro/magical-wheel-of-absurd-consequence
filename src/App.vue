@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>The Magical Wheel of Suffering</h1>
+    <h1 class="main-title">The Magical Wheel of Suffering</h1>
     <Screen1 />
     <Screen2 v-if="this.$store.state.selectedPervasion && this.$store.state.subject && this.$store.state.predicate"/>
   </div>
@@ -35,5 +35,8 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  h1.main-title {
+    font-size:50px;
   }
 </style>

@@ -1,11 +1,18 @@
 <template>
   <div>
+    <h1>Choose a subject and predicate</h1>
     <div id="form-container">
-      <span style="margin: 0 20px;">Whatever is (a)</span>
       <input v-model="innerText" placeholder="Subject">
       <span style="margin: 0 20px;">is</span>
       <input v-model="outerText" placeholder="Predicate">
     </div>
+    <div>
+      Forward Pervasion: whatever is <span class="emphasize">{{innerText}}</span> is necessarily <span class="emphasize">{{outerText}}</span>
+    </div>
+    <div>
+      Counter Pervasion: whatever is NOT <span class="emphasize">{{outerText}}</span> is necessarily NOT <span class="emphasize">{{innerText}}</span>
+    </div>
+    <h1>Select a pervasion or mu</h1>
     <div id="stage-container" v-bind:style="styleObject">
       <v-stage :config="configKonva">
         <v-layer :config="configLayer">
@@ -128,5 +135,10 @@ export default {
     input {
       font-size: 18px;
     }
+  }
+  .emphasize {
+    color:black;
+    font-weight: bold;
+    text-decoration: underline;
   }
 </style>

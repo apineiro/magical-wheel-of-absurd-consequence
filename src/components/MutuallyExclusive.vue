@@ -35,18 +35,18 @@ export default {
         x: this.x,
         y: this.y,
         radius: this.radius,
-        fill: "white",
-        stroke: 'DeepSkyBlue',
+        fill: this.$store.state.color2,
+        stroke: this.$store.state.color1,
         strokeWidth: 5
       },
       outerCircle: {
         x: this.x + this.radius*2,
         y: this.y,
         radius: this.radius,
-        fill: "DeepSkyBlue",
+        fill: this.$store.state.color1,
       },
       innerTextConfig: {
-        x: this.x - this.radius*0.5,
+        x: this.x - this.radius,
         y: this.y - this.radius/2,
         verticalAlign: 'middle',
         text: this.innerText,
@@ -54,11 +54,11 @@ export default {
         fontSize: fontSize,
         height:this.radius,
         wrap:'word',
-        width: this.radius,
+        width: this.radius*2,
         align: "center"
       },
       outerTextConfig: {
-        x: this.x + this.radius*1.5,
+        x: this.x + this.radius,
         y: this.y - this.radius/2,
         verticalAlign: 'middle',
         text: this.outerText,
@@ -66,7 +66,7 @@ export default {
         fontSize: fontSize,
         height: this.radius,
         wrap:'word',
-        width: this.radius,
+        width: this.radius*2,
         align: "center"
       }
     };

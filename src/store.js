@@ -9,7 +9,10 @@ export default new Vuex.Store({
     predicate:'Predicate',
     currentScreen:0,
     selectedPervasion:null,
-    stageWidth: 800
+    stageWidth: 800,
+    color1: "DeepSkyBlue",
+    color2: "gold",
+    fontColor: "white"
   },
   mutations: {
     setSubject (state, val) {
