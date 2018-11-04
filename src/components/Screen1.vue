@@ -161,6 +161,8 @@ export default {
     input {
       padding:5px;
       font-size: 18px;
+      border-style: hidden;
+      text-align: center;
     }
   }
   .emphasize {
