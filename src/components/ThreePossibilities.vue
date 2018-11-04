@@ -17,7 +17,8 @@ export default {
     radius: Number,
     outerText: String,
     innerText: String,
-    pervasionName: String
+    pervasionName: String,
+    swapColors: Boolean
   },
   methods: {
     handleClick: function() {
@@ -46,13 +47,13 @@ export default {
         x: this.x,
         y: this.y,
         radius: innerCircleRadius,
-        fill: this.$store.state.color2,
+        fill: this.swapColors ? this.$store.state.color1 : this.$store.state.color2,
       },
       outerCircle: {
         x: this.x,
         y: this.y,
         radius: this.radius,
-        fill: this.$store.state.color1,
+        fill:this.swapColors ? this.$store.state.color2 : this.$store.state.color1,
       },
       innerTextConfig: {
         x: this.x - innerCircleRadius * 3 / 2,

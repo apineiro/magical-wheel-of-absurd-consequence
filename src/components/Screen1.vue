@@ -2,12 +2,13 @@
   <div>
     <h1>Choose a subject and predicate</h1>
     <div id="form-container">
-      <input v-model="innerText" placeholder="Subject">
+      <input v-model="innerText" placeholder="Subject" :style="{ backgroundColor:this.$store.state.color2 }">
       <span style="margin: 0 20px;">is</span>
-      <input v-model="outerText" placeholder="Predicate">
+      <input v-model="outerText" placeholder="Predicate" :style="{ backgroundColor:this.$store.state.color1 }">
     </div>
     <div>
-      Forward Pervasion: whatever is <span class="emphasize">{{innerText}}</span> is necessarily <span class="emphasize">{{outerText}}</span>
+      Forward Pervasion: whatever is <span class="emphasize" >{{innerText}}</span>
+      is necessarily <span class="emphasize">{{outerText}}</span>
     </div>
     <div>
       Counter Pervasion: whatever is NOT <span class="emphasize">{{outerText}}</span> is necessarily NOT <span class="emphasize">{{innerText}}</span>
@@ -31,6 +32,7 @@
                   :outerText="innerText"
                   :innerText="outerText"
                   pervasionName="PredicateInsideSubject"
+                  swapColors="true"
           />
           <MutuallyExclusive
                   :x="baseRadius"
@@ -157,6 +159,7 @@ export default {
     margin-bottom: 30px;
     font-size: 18px;
     input {
+      padding:5px;
       font-size: 18px;
     }
   }

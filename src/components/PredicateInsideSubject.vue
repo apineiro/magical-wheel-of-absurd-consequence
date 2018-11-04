@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Three Possibilities</h1>
-    <div class="text">Whatever is <span class="emphasize">{{predicate}}</span> (inner container) is necessarily <span class="emphasize">{{subject}}</span> (outer container).</div>
+    <div class="text">Whatever is <span class="emphasize" :style="color1Style">{{predicate}}</span> (inner container)
+      is necessarily <span class="emphasize" :style="color2Style">{{subject}}</span> (outer container).</div>
     <div id="stage-container" v-bind:style="styleObject">
       <v-stage :config="configKonva">
         <v-layer>
@@ -11,13 +12,14 @@
                   v-bind:radius="baseRadius"
                   :outerText="subject"
                   :innerText="predicate"
+                  swapColors="true"
           />
         </v-layer>
       </v-stage>
     </div>
     <div id="text-container">
-      <div>Find something that is <span class="emphasize">{{predicate}}</span> (inner container) that does not have the
-        quality of being <span class="emphasize">{{subject}}</span> (outer container).</div>
+      <div>Find something that is <span class="emphasize" :style="color1Style">{{predicate}}</span> (inner container) that does not have the
+        quality of being <span class="emphasize" :style="color2Style">{{subject}}</span> (outer container).</div>
       <input id="reasonInput" v-model="reasonText" @change="handleChange">
     </div>
     <div v-if="reasonText" id="consequence-container">
@@ -97,6 +99,16 @@ export default {
         width: stageWidth + 'px',
         margin: '0 auto',
         marginTop: '20px'
+      },
+      color1Style: {
+        backgroundColor:this.$store.state.color1,
+        textDecoration:'none',
+        padding: '0 8px'
+      },
+      color2Style: {
+        backgroundColor:this.$store.state.color2,
+        textDecoration:'none',
+        padding: '0 8px'
       },
       configKonva: {
         width: stageWidth,
