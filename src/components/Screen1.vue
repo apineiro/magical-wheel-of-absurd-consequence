@@ -1,17 +1,10 @@
 <template>
   <div>
-    <h1>Choose a subject and predicate</h1>
+    <h1>Choose a two objects:</h1>
     <div id="form-container">
-      <input v-model="innerText" placeholder="Subject" :style="{ backgroundColor:this.$store.state.color2 }">
-      <span style="margin: 0 20px;">is</span>
-      <input v-model="outerText" placeholder="Predicate" :style="{ backgroundColor:this.$store.state.color1 }">
-    </div>
-    <div>
-      Forward Pervasion: whatever is <span class="emphasize" >{{innerText}}</span>
-      is necessarily <span class="emphasize">{{outerText}}</span>
-    </div>
-    <div>
-      Counter Pervasion: whatever is NOT <span class="emphasize">{{outerText}}</span> is necessarily NOT <span class="emphasize">{{innerText}}</span>
+      <input v-model="innerText" placeholder="Object A" :style="{ backgroundColor:this.$store.state.color2 }">
+      <span style="margin: 0 20px;"></span>
+      <input v-model="outerText" placeholder="Object B" :style="{ backgroundColor:this.$store.state.color1 }">
     </div>
     <h1>Select a pervasion or mu</h1>
     <div id="stage-container" v-bind:style="styleObject">
@@ -155,7 +148,6 @@ export default {
   }
   #form-container {
     min-width:800px;
-    padding:20px;
     margin-bottom: 30px;
     font-size: 18px;
     input {

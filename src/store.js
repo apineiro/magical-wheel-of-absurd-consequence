@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    subject:'Subject',
-    predicate:'Predicate',
+    subject:'Object A',
+    predicate:'Object B',
     reason: 'Reason',
     currentScreen:0,
     selectedPervasion:null,
