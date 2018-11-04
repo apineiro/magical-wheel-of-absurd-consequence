@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     subject:'Subject',
     predicate:'Predicate',
+    reason: 'Reason',
     currentScreen:0,
     selectedPervasion:null,
     stageWidth: 800,
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setPredicate (state, val) {
       state.predicate = val;
+    },
+    setReason (state, val) {
+      state.reason = val;
     },
     setCurrentScreen (state, val) {
       state.currentScreen = val;

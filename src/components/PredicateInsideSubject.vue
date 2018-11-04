@@ -47,6 +47,12 @@ export default {
     },
     predicate: {
       get () { return this.$store.state.predicate},
+    },
+    reasonText: {
+      get () { return this.$store.state.reason},
+      set (value) {
+        this.$store.commit('setReason', value);
+      }
     }
   },
   mounted: function () {
@@ -87,7 +93,6 @@ export default {
     return {
       stageWidth: this.$store.state.stageWidth,
       stageHeight: stageHeight,
-      reasonText:'',
       styleObject: {
         width: stageWidth + 'px',
         margin: '0 auto',
