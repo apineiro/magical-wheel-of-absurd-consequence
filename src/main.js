@@ -4,6 +4,12 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+Vue.use(require('vue-easeljs'));
+
+import VueKonva from 'vue-konva'
+
+Vue.use(VueKonva)
+
 new Vue({
   store,
   render: h => h(App)
