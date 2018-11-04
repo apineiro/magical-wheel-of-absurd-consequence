@@ -1,5 +1,5 @@
 <template>
-  <v-group @click="click">
+  <v-group @click="handleClick">
     <v-circle :config="outerCircle"></v-circle>
     <v-circle :config="innerCircle"></v-circle>
     <v-text :config="innerTextConfig"></v-text>
@@ -10,14 +10,23 @@
 <script>
 
 export default {
-  name: 'MuBoard',
+  name: 'ThreePossibilities',
   props: {
     x: Number,
     y: Number,
     radius: Number,
     outerText: String,
     innerText: String,
-    click: Function
+    pervasionName: String
+  },
+  methods: {
+    handleClick: function() {
+      if (this.$store.state.subject && this.$store.state.predicate) {
+        if (this.pervasionName) {
+          this.$store.commit('setSelectedPervasion', this.pervasionName);
+        }
+      }
+    }
   },
   watch: {
     innerText: function(newVal) {

@@ -10,13 +10,13 @@
 <script>
 
 export default {
-  name: 'MuBoard',
+  name: 'FourPossibilities',
   props: {
     x: Number,
     y: Number,
     radius: Number,
     outerText: String,
-    innerText: String,
+    innerText: String
   },
   watch: {
     innerText: function(newVal) {
@@ -38,7 +38,7 @@ export default {
         fill: "white",
         stroke: 'DeepSkyBlue',
         strokeWidth: 5,
-        opacity: 0.7
+        opacity: 0.7,
       },
       outerCircle: {
         x: this.x + this.radius*1.5,

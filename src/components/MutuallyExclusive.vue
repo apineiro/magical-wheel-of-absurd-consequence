@@ -10,13 +10,13 @@
 <script>
 
 export default {
-  name: 'MuBoard',
+  name: 'MutuallyExclusive',
   props: {
     x: Number,
     y: Number,
     radius: Number,
     outerText: String,
-    innerText: String
+    innerText: String,
   },
   watch: {
     innerText: function(newVal) {

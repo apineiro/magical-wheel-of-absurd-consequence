@@ -1,118 +1,27 @@
 <template>
   <div id="app">
-    <div id="form-container">
-      <span style="margin: 0 20px;">Whatever is (a)</span>
-      <input v-model="innerText" placeholder="Subject">
-      <span style="margin: 0 20px;">is</span>
-      <input v-model="outerText" placeholder="Predicate">
-    </div>
-    <div id="stage-container" v-bind:style="styleObject">
-      <v-stage :config="configKonva">
-        <v-layer :config="configLayer">
-          <ThreePossibilities
-                  :x="this.configKonva.width/2 - baseRadius*1.2"
-                  v-bind:y="baseRadius"
-                  v-bind:radius="baseRadius"
-                  :outerText="outerText"
-                  :innerText="innerText"
-                  :click="handleClickAB"
-          />
-          <ThreePossibilities
-                  :x="this.configKonva.width/2 + baseRadius*1.2"
-                  v-bind:y="baseRadius"
-                  v-bind:radius="baseRadius"
-                  :outerText="innerText"
-                  :innerText="outerText"
-                  :click="handleClickBA"
-          />
-          <MutuallyExclusive
-                  :x="baseRadius"
-                  v-bind:y="baseRadius*3.2"
-                  v-bind:radius="baseRadius/1.5"
-                  :outerText="innerText"
-                  :innerText="outerText"
-          />
-          <OneWith
-                  :x="baseRadius*4"
-                  v-bind:y="baseRadius*3.2"
-                  v-bind:radius="baseRadius/1.5"
-                  :outerText="innerText"
-                  :innerText="outerText"
-          />
-          <FourPossibilities
-                  :x="baseRadius*5.7"
-                  v-bind:y="baseRadius*3.2"
-                  v-bind:radius="baseRadius/1.5"
-                  :outerText="innerText"
-                  :innerText="outerText"
-          />
-        </v-layer>
-      </v-stage>
-    </div>
+    <h1>The Magical Wheel of Suffering</h1>
+    <Screen1 />
+    <Screen2 v-if="this.$store.state.selectedPervasion && this.$store.state.subject && this.$store.state.predicate"/>
   </div>
 </template>
 
 <script>
 
-import ThreePossibilities from './components/ThreePossibilities'
-import MutuallyExclusive from './components/MutuallyExclusive'
-import OneWith from './components/OneWith'
-import FourPossibilities from './components/FourPossibilities'
-
-const stageHeight = 400;
-const stageWidth = 800;
+import Screen1 from './components/Screen1'
+import Screen2 from './components/Screen2'
 
 
 export default {
   name: 'app',
+  props: ['store'],
   components: {
-    ThreePossibilities,
-    MutuallyExclusive,
-    OneWith,
-    FourPossibilities
-  },
-  methods: {
-    beforeUpdate: function () {
-      console.log("Updating...")
-    },
-    handleClickAB: () => {
-      alert("click");
-    },
-    handleClickBA: () => {
-      alert("click");
-    }
+    Screen1,
+    Screen2
   },
   data() {
     return {
-      subject: "",
-      predicate: "",
-      stageHeight: stageHeight,
-      stageWidth: stageWidth,
-      styleObject: {
-        width: stageWidth + 'px',
-        margin: '0 auto'
-      },
-      configKonva: {
-        width: stageWidth,
-        height: stageHeight,
-      },
-      configLayer: {
-        scale: {
-          x:1,
-          y:1
-        }
-      },
-      configRect: {
-        x:0,
-        y:0,
-        width: stageWidth,
-        height: stageHeight,
-        strokeWidth: 5,
-        stroke: 'black',
-      },
-      baseRadius: stageWidth/8,
-      innerText: "Subject",
-      outerText: "Predicate"
+
     }
   }
 }
@@ -126,14 +35,5 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-  }
-  #form-container {
-    min-width:800px;
-    padding:20px;
-    margin-bottom: 30px;
-    font-size: 18px;
-    input {
-      font-size: 18px;
-    }
   }
 </style>

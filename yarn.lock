@@ -6768,10 +6768,6 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-easeljs@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/vue-easeljs/-/vue-easeljs-0.1.1.tgz#db11b9caa12b55e198d0179d89fb38025a18bd52"
-
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -7123,7 +7119,3 @@ yorkie@^2.0.0:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
-
-yuki-createjs@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/yuki-createjs/-/yuki-createjs-0.0.3.tgz#cdf25a7dd08116d6ab31fef17144e85771be4219"
