@@ -57,7 +57,27 @@ export default {
     handleChange() {
       let elem = document.getElementById("consequence-container");
       if (elem) elem.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    },
+    handleResize() {
+      let width = window.innerWidth;
+      console.log("width:" + width);
+      let scale = width*0.8 / 800;
+      this.styleObject.width = width*0.8 + 'px';
+      this.configKonva = {
+        width: this.stageWidth * scale,
+        height: this.stageHeight * scale,
+        scale: {
+          x: scale,
+          y: scale
+        }
+      }
     }
+  },
+  beforeMount: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   },
   data() {
 
@@ -65,6 +85,8 @@ export default {
     const stageHeight = stageWidth/5*2;
 
     return {
+      stageWidth: this.$store.state.stageWidth,
+      stageHeight: stageHeight,
       reasonText:'',
       styleObject: {
         width: stageWidth + 'px',
@@ -73,7 +95,11 @@ export default {
       },
       configKonva: {
         width: stageWidth,
-        height: stageHeight
+        height: stageHeight,
+        scale: {
+          x:1,
+          y:1
+        }
       },
       baseRadius: stageWidth/5
     }

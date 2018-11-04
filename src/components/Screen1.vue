@@ -90,14 +90,38 @@ export default {
       }
     }
   },
+  methods: {
+    handleResize() {
+      let width = window.innerWidth;
+      console.log("width:" + width);
+      let scale = width*0.8 / 800;
+      this.styleObject.width = width*0.8 + 'px';
+      this.configKonva = {
+        width: this.stageWidth * scale,
+        height: this.stageHeight * scale,
+        scale: {
+          x: scale,
+          y: scale
+        }
+      }
+    }
+  },
+  beforeMount: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   data() {
 
     const stageWidth = this.$store.state.stageWidth;
     const stageHeight = 400;
 
+    //console.log("stageWidth:" + stageWidth);
+
     return {
+      stageWidth: this.$store.state.stageWidth,
       stageHeight: stageHeight,
-      stageWidth: stageWidth,
       styleObject: {
         width: stageWidth + 'px',
         margin: '0 auto'
@@ -105,12 +129,12 @@ export default {
       configKonva: {
         width: stageWidth,
         height: stageHeight,
-      },
-      configLayer: {
         scale: {
           x:1,
           y:1
         }
+      },
+      configLayer: {
       },
       baseRadius: stageWidth/8
     }

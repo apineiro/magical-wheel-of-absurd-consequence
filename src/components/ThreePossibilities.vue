@@ -34,7 +34,7 @@ export default {
     },
     outerText: function(newVal) {
       this.outerTextConfig.text = newVal;
-    }
+    },
   },
   data() {
 

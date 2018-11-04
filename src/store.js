@@ -26,6 +26,9 @@ export default new Vuex.Store({
     },
     setSelectedPervasion (state, val) {
       state.selectedPervasion = val;
+    },
+    setStageWidth (state, val) {
+      state.stageWidth = val;
     }
   },
   actions: {
