@@ -1,12 +1,26 @@
 <template>
   <div>
-    <h1>Choose a two objects:</h1>
+    <h1>Choose two objects:</h1>
     <div id="form-container">
-      <input v-model="innerText" placeholder="Object A" :style="{ backgroundColor:this.$store.state.color2 }">
+      <input
+              v-model="innerText"
+              placeholder="Object A"
+              :style="{
+                backgroundColor:this.$store.state.color2,
+                fontSize:this.$store.state.objectsFontSize
+               }"
+      >
       <span style="margin: 0 20px;"></span>
-      <input v-model="outerText" placeholder="Object B" :style="{ backgroundColor:this.$store.state.color1 }">
+      <input
+              v-model="outerText"
+              placeholder="Object B"
+              :style="{
+                backgroundColor:this.$store.state.color1,
+                fontSize:this.$store.state.objectsFontSize
+              }"
+      >
     </div>
-    <h1>Select a pervasion or mu</h1>
+    <h1>Select a diagram</h1>
     <div id="stage-container" v-bind:style="styleObject">
       <v-stage :config="configKonva">
         <v-layer :config="configLayer">
@@ -17,6 +31,7 @@
                   :outerText="outerText"
                   :innerText="innerText"
                   pervasionName="SubjectInsidePredicate"
+                  :swapColors="false"
           />
           <ThreePossibilities
                   :x="this.configKonva.width/2 + baseRadius*1.2"
@@ -25,7 +40,7 @@
                   :outerText="innerText"
                   :innerText="outerText"
                   pervasionName="PredicateInsideSubject"
-                  swapColors="true"
+                  :swapColors="true"
           />
           <MutuallyExclusive
                   :x="baseRadius"
@@ -138,28 +153,16 @@ export default {
 </script>
 
 <style lang="scss">
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
+
   #form-container {
     min-width:800px;
     margin-bottom: 30px;
     font-size: 18px;
     input {
       padding:5px;
-      font-size: 18px;
       border-style: hidden;
       text-align: center;
     }
   }
-  .emphasize {
-    color:black;
-    font-weight: bold;
-    text-decoration: underline;
-  }
+
 </style>

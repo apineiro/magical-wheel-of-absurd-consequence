@@ -28,7 +28,9 @@ export default {
   },
   data() {
 
-    const fontSize = this.radius/5;
+    const objectFontSize = Number(this.$store.state.objectsFontSize.replace('px',''));
+
+    const fontSize = this.radius/3.5 * objectFontSize / 18;
 
     return {
       innerCircle: {

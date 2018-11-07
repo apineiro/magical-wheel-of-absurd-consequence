@@ -37,12 +37,27 @@ export default {
       this.outerTextConfig.text = newVal;
     },
   },
+  created() {
+    this.$store.watch(
+      function (state) {
+        const objectFontSize = Number(state.objectsFontSize.replace('px',''));
+        const fontSize = this.radius/6 * objectFontSize / 18;
+        this.innerTextConfig.fontSize = fontSize;
+        this.outerTextConfig.fontSize = fontSize;
+      }
+    );
+  },
   data() {
 
-    const fontSize = this.radius/6;
+    const objectFontSize = Number(this.$store.state.objectsFontSize.replace('px',''));
+    const fontSize = this.radius/6 * objectFontSize / 18;
+
+    console.log(fontSize)
+
     const innerCircleRadius = this.radius / 2.5;
 
     return {
+      baseFontSize: fontSize,
       innerCircle: {
         x: this.x,
         y: this.y,
@@ -61,7 +76,7 @@ export default {
         verticalAlign: 'middle',
         text: this.innerText,
         fontFamily: "Arial",
-        fontSize: fontSize,
+        fontSize: this.baseFontSize,
         height:innerCircleRadius*2,
         wrap:'word',
         width: innerCircleRadius * 3,
@@ -73,7 +88,7 @@ export default {
         verticalAlign: 'middle',
         text: this.outerText,
         fontFamily: "Arial",
-        fontSize: fontSize,
+        fontSize: this.baseFontSize,
         height: innerCircleRadius*2,
         wrap:'word',
         width: innerCircleRadius * 3,

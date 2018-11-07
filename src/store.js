@@ -7,13 +7,14 @@ export default new Vuex.Store({
   state: {
     subject:'Object A',
     predicate:'Object B',
-    reason: 'Reason',
+    reason: 'Subject',
     currentScreen:0,
     selectedPervasion:null,
     stageWidth: 800,
     color1: "DeepSkyBlue",
     color2: "gold",
-    fontColor: "white"
+    fontColor: "white",
+    objectsFontSize: '24px'
   },
   mutations: {
     setSubject (state, val) {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     setStageWidth (state, val) {
       state.stageWidth = val;
+    },
+    setObjectFontSize (state, val) {
+      state.objectsFontSize = val;
     }
   },
   actions: {

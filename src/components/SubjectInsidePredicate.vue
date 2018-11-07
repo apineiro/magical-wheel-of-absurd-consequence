@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Three Possibilities</h1>
-    <div class="text">Whatever is <span class="emphasize" :style="color1Style">{{subject}}</span> (inner container)
-      is necessarily <span class="emphasize" :style="color2Style">{{predicate}}</span> (outer container).</div>
+    <h1 id="three-possibilities-header">Three Possibilities</h1>
+    <div class="text">Whatever is <InlineEmphasize color="2" :text="subject" /> (inner container)
+      is necessarily <InlineEmphasize color="1" :text="predicate" /> (outer container).</div>
     <div id="stage-container" v-bind:style="styleObject">
       <v-stage :config="configKonva">
         <v-layer>
@@ -12,23 +12,27 @@
                   v-bind:radius="baseRadius"
                   :outerText="predicate"
                   :innerText="subject"
-                  swapColors="false"
+                  :swapColors="false"
           />
         </v-layer>
       </v-stage>
     </div>
     <div id="text-container">
-      <div>Find something that is <span class="emphasize" :style="color1Style">{{subject}}</span> (inner container) that does not have the
-        quality of being <span class="emphasize" :style="color2Style">{{predicate}}</span> (outer container).</div>
-      <input id="reasonInput" v-model="reasonText" @change="handleChange">
+      <div>Find something that is <InlineEmphasize color="2" :text="subject" /> (inner container) that does not have the
+        quality of being <InlineEmphasize color="1" :text="predicate" /> (outer container).</div>
+      <input
+              id="reasonInput"
+              v-model="reasonText"
+              @change="handleChange"
+              :style="{fontSize:this.$store.state.objectsFontSize}"
+      >
     </div>
-    <div v-if="reasonText" id="consequence-container">
+    <div id="consequence-container">
       <h1>Consequence</h1>
-      <div><span class="emphasize">{{reasonText}}</span> is <span class="emphasize">{{predicate}}</span> because
-        <span class="emphasize">{{subject}}</span></div>
-      <div>OR</div>
-      <div>Whatever is <span class="emphasize">{{subject}}</span> is not necessarily
-        <span class="emphasize">{{predicate}}</span> because <span class="emphasize">{{reasonText}}</span></div>
+      <div><InlineEmphasize :text="reasonText" /> is <InlineEmphasize :text="predicate" /> because
+        <InlineEmphasize :text="subject" /></div>
+      <div>and you claimed</div>
+      <div>Whatever is <InlineEmphasize :text="subject" /> is necessarily <InlineEmphasize :text="predicate" /></span></div>
     </div>
   </div>
 </template>
@@ -36,11 +40,13 @@
 <script>
 
 import ThreePossibilities from './ThreePossibilities'
+import InlineEmphasize from './InlineEmphasize'
 
 export default {
   name: 'SubjectInsidePredicate',
   components: {
     ThreePossibilities,
+    InlineEmphasize
   },
   computed: {
     subject: {
@@ -58,16 +64,15 @@ export default {
   },
   mounted: function () {
     let elem = document.getElementById("reasonInput");
-    if (elem) elem.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    if (elem) elem.scrollIntoView({ block: 'end',  behavior: 'smooth' });
   },
   methods: {
     handleChange() {
-      let elem = document.getElementById("consequence-container");
-      if (elem) elem.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+      //let elem = document.getElementById("consequence-container");
+      //if (elem) elem.scrollIntoView({ block: 'end',  behavior: 'smooth' });
     },
     handleResize() {
       let width = window.innerWidth;
-      console.log("width:" + width);
       let scale = width*0.8 / 800;
       this.styleObject.width = width*0.8 + 'px';
       this.configKonva = {
@@ -89,7 +94,8 @@ export default {
   data() {
 
     const stageWidth = this.$store.state.stageWidth;
-    const stageHeight = stageWidth/5*2;
+    const baseRadius = stageWidth/7;
+    const stageHeight = baseRadius*2;
 
     return {
       stageWidth: this.$store.state.stageWidth,
@@ -117,7 +123,7 @@ export default {
           y:1
         }
       },
-      baseRadius: stageWidth/5
+      baseRadius: baseRadius,
     }
   }
 }
@@ -126,25 +132,6 @@ export default {
 <style lang="scss">
   h1 {
     margin-top: 100px;
-    margin-bottom: 40px;
-  }
-  .text {
-    font-size: 18px;
-  }
-  #text-container {
-    font-size: 18px;
-    width:400px;
-    margin: 30px auto 50px auto;
-  }
-  input {
-    font-size: 18px;
-    margin-top:20px;
-  }
-  #consequence-container {
-    font-size: 18px;
-    margin-bottom:100px;
-    div {
-      margin-bottom: 20px;
-    }
+    margin-bottom : 40px;
   }
 </style>

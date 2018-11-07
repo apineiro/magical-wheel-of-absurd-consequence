@@ -32,29 +32,5 @@ export default {
 </script>
 
 <style lang="scss">
-  h1 {
-    margin-top: 100px;
-    margin-bottom: 40px;
-  }
-  .text {
-    font-size: 18px;
-  }
-  #text-container {
-    font-size: 18px;
-    width:400px;
-    margin: 30px auto 50px auto;
-  }
-  input {
-    font-size: 18px;
-    margin-top:20px;
-  }
-  #consequence-container {
-    font-size: 18px;
-    margin-bottom:100px;
-  }
-  .emphasize {
-    color:black;
-    font-weight: bold;
-    text-decoration: underline;
-  }
+
 </style>
