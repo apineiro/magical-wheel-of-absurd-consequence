@@ -65,7 +65,7 @@ export default {
   }
 
   #text-container {
-    width:400px;
+    width: 50%;
     margin: 30px auto 50px auto;
   }
 

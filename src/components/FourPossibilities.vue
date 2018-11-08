@@ -2,8 +2,8 @@
   <v-group>
     <v-circle :config="outerCircle"></v-circle>
     <v-circle :config="innerCircle"></v-circle>
-    <v-text :config="innerTextConfig"></v-text>
-    <v-text :config="outerTextConfig"></v-text>
+    <v-text :config="Object.assign({fontSize:objectsFontSize}, innerTextConfig)"></v-text>
+    <v-text :config="Object.assign({fontSize:objectsFontSize}, outerTextConfig)"></v-text>
   </v-group>
 </template>
 
@@ -26,12 +26,12 @@ export default {
       this.outerTextConfig.text = newVal;
     }
   },
+  computed: {
+    objectsFontSize () {
+      return this.$store.state.objectsFontSize.replace('px','');
+    }
+  },
   data() {
-
-    const objectFontSize = Number(this.$store.state.objectsFontSize.replace('px',''));
-
-    const fontSize = this.radius/4 * objectFontSize / 18;
-
     return {
       innerCircle: {
         x: this.x,
@@ -49,27 +49,25 @@ export default {
         fill: this.$store.state.color1,
       },
       innerTextConfig: {
-        x: this.x - this.radius*0.5,
+        x: this.x - this.radius,
         y: this.y - this.radius/2,
         verticalAlign: 'middle',
         text: this.innerText,
         fontFamily: "Arial",
-        fontSize: fontSize,
         height:this.radius,
         wrap:'word',
-        width: this.radius,
+        width: this.radius*1.8,
         align: "center"
       },
       outerTextConfig: {
-        x: this.x + this.radius*1.0,
+        x: this.x + this.radius*0.7,
         y: this.y - this.radius/2,
         verticalAlign: 'middle',
         text: this.outerText,
         fontFamily: "Arial",
-        fontSize: fontSize,
         height: this.radius,
         wrap:'word',
-        width: this.radius,
+        width: this.radius*1.8,
         align: "center"
       }
     };
